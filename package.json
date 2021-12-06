@@ -2,6 +2,24 @@
   "name": "rncalculator",
   "version": "0.0.1",
   "private": true,
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolaM-Dev/rn-calculator.git"
+  },
+  "keywords": [
+    "React Native",
+    "React",
+    "iOS",
+    "Android"
+  ],
+  "author": "David Merchan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NikolaM-Dev/rn-calculator/issues"
+  },
+  "homepage": "https://github.com/NikolaM-Dev/rn-calculator#readme",
+  "description": "iOS Calculator using React Native",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -40,18 +58,5 @@
       "json",
       "node"
     ]
-  },
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NikolaM-Dev/rn-calculator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NikolaM-Dev/rn-calculator/issues"
-  },
-  "homepage": "https://github.com/NikolaM-Dev/rn-calculator#readme",
-  "description": ""
+  }
 }
