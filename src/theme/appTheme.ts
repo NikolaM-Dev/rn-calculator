@@ -2,7 +2,27 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   background: {
-    flex: 1,
     backgroundColor: 'black',
+    flex: 1,
+  },
+  wrapper: {
+    paddingHorizontal: 40,
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  result: {
+    color: 'white',
+    fontSize: 72,
+    textAlign: 'right',
+    marginBottom: 40,
+  },
+  ans: {
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 30,
+    textAlign: 'right',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
