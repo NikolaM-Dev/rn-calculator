@@ -23,10 +23,12 @@ const CalculatorScreen = () => {
   };
 
   const buildResult = (payload?: string) => {
+    if (!payload) return;
+    // Division by 0
+    if (number.includes('NaN') || number.includes('Infinity'))
+      return setNumber(payload);
     // No double point
-    if (number.includes('.') && payload === '.') {
-      return;
-    }
+    if (number.includes('.') && payload === '.') return;
 
     if (number.startsWith('0') || number.startsWith('-0')) {
       // Decimal point
@@ -35,10 +37,9 @@ const CalculatorScreen = () => {
       else if (payload === '0' && number.includes('.'))
         setNumber(number + payload);
       // Evaluate if it is different from zero and has no point
-      else if (payload !== '0' && !number.includes('.')) {
-        if (payload) setNumber(payload);
-        // Prevent 000.0
-      } else if (payload === '0' && !number.includes('.')) return;
+      else if (payload !== '0' && !number.includes('.')) setNumber(payload);
+      // Prevent 000.0
+      else if (payload === '0' && !number.includes('.')) return;
       else setNumber(number + payload);
     } else setNumber(number + payload);
   };
@@ -71,9 +72,59 @@ const CalculatorScreen = () => {
     setNumber('0');
   };
 
-  const handleOperation = (operator: Operators) => {
-    handleSendToAns();
+  const handlePercentage = (operator: Operators): void => {
     lastOperation.current = operator;
+    const num1 = Number(ans);
+    const num2 = Number(number);
+    const percentage = ((num1 / 100) * num2).toFixed(2);
+
+    setAns('0');
+
+    if (percentage.split('.')[1] === '00')
+      return setNumber(percentage.split('.')[0]);
+
+    setNumber(percentage);
+  };
+
+  const handleOperation = (operator: Operators) => {
+    if (
+      lastOperation.current === Operators.multiplication &&
+      operator === Operators.percentage
+    )
+      return handlePercentage(operator);
+
+    if (
+      lastOperation.current === Operators.percentage &&
+      operator === Operators.percentage
+    )
+      return;
+
+    lastOperation.current = operator;
+    handleSendToAns();
+  };
+
+  const handleCalculate = (): void => {
+    const num1 = Number(ans);
+    const num2 = Number(number);
+
+    switch (lastOperation.current) {
+      case Operators.add:
+        break;
+
+      case Operators.subtract:
+        setNumber(`${num1 - num2}`);
+        break;
+
+      case Operators.multiplication:
+        setNumber(`${num1 * num2}`);
+        break;
+
+      case Operators.divide:
+        setNumber(`${num1 / num2}`);
+        break;
+    }
+
+    setAns('0');
   };
 
   return (
@@ -144,7 +195,11 @@ const CalculatorScreen = () => {
       <View style={styles.row}>
         <Button double action={buildResult} text={'0'} />
         <Button action={buildResult} text={'.'} />
-        <Button action={buildResult} backgroundColor={'#F1A33B'} text={'='} />
+        <Button
+          action={handleCalculate}
+          backgroundColor={'#F1A33B'}
+          text={'='}
+        />
       </View>
     </View>
   );
