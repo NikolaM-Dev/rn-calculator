@@ -1,44 +1,50 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 interface Props {
   text: string;
   color?: string;
   backgroundColor?: string;
+  double?: boolean;
+  action: (payload?: string) => void;
 }
 
 const Button = ({
   text,
   color = 'white',
   backgroundColor = '#333333',
+  double,
+  action,
 }: Props) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => action(text)}
       style={{
         ...styles.button,
         backgroundColor,
+        width: !double ? 80 : 180,
       }}>
       <Text
         style={{
           ...styles.textButton,
           color,
+          textAlign: !double ? 'center' : 'left',
+          paddingLeft: !double ? 0 : 32,
         }}>
         {text}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    width: 85,
-    height: 85,
+    height: 80,
     borderRadius: 100,
     justifyContent: 'center',
     margin: 8,
   },
   textButton: {
-    alignSelf: 'center',
     fontSize: 32,
     fontWeight: '500',
   },
