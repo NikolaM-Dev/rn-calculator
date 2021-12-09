@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import Button from '../components/Button';
 import { styles } from '../theme/appTheme';
 
+enum Operators {
+  add,
+  subtract,
+  divide,
+  percentage,
+  multiplication,
+}
+
 const CalculatorScreen = () => {
   const [number, setNumber] = useState<string>('0');
   const [ans, setAns] = useState<string>('0');
+  const lastOperation = useRef<Operators>();
 
-  const clean = () => setNumber('0');
+  const clean = () => {
+    setNumber('0');
+    setAns('0');
+  };
 
   const buildResult = (payload?: string) => {
     // No double point
@@ -59,6 +71,11 @@ const CalculatorScreen = () => {
     setNumber('0');
   };
 
+  const handleOperation = (operator: Operators) => {
+    handleSendToAns();
+    lastOperation.current = operator;
+  };
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.ans}>{ans}</Text>
@@ -83,13 +100,13 @@ const CalculatorScreen = () => {
           text={'+/-'}
         />
         <Button
-          action={handleSendToAns}
+          action={() => handleOperation(Operators.percentage)}
           backgroundColor={'#A5A5A5'}
           color={'black'}
           text={'%'}
         />
         <Button
-          action={handleSendToAns}
+          action={() => handleOperation(Operators.divide)}
           backgroundColor={'#F1A33B'}
           text={'/'}
         />
@@ -99,7 +116,7 @@ const CalculatorScreen = () => {
         <Button action={buildResult} text={'8'} />
         <Button action={buildResult} text={'9'} />
         <Button
-          action={handleSendToAns}
+          action={() => handleOperation(Operators.multiplication)}
           backgroundColor={'#F1A33B'}
           text={'x'}
         />
@@ -109,7 +126,7 @@ const CalculatorScreen = () => {
         <Button action={buildResult} text={'5'} />
         <Button action={buildResult} text={'4'} />
         <Button
-          action={handleSendToAns}
+          action={() => handleOperation(Operators.subtract)}
           backgroundColor={'#F1A33B'}
           text={'-'}
         />
@@ -119,7 +136,7 @@ const CalculatorScreen = () => {
         <Button action={buildResult} text={'2'} />
         <Button action={buildResult} text={'1'} />
         <Button
-          action={handleSendToAns}
+          action={() => handleOperation(Operators.add)}
           backgroundColor={'#F1A33B'}
           text={'+'}
         />
