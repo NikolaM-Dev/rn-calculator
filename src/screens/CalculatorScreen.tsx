@@ -37,6 +37,28 @@ const CalculatorScreen = () => {
       : setNumber('-' + number);
   };
 
+  const handleDel = (): void => {
+    let negative = '';
+    let tempNumber = number;
+
+    if (number.includes('-')) {
+      negative = '-';
+      tempNumber = number.replace('-', '');
+    }
+
+    if (tempNumber.length > 1)
+      return setNumber(negative + tempNumber.slice(0, -1));
+
+    setNumber('0');
+  };
+
+  const handleSendToAns = (): void => {
+    if (number.endsWith('.')) setAns(number.slice(0, -1));
+    else setAns(number);
+
+    setNumber('0');
+  };
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.ans}>{ans}</Text>
