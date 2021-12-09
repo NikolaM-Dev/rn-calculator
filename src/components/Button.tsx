@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface Props {
   text: string;
@@ -18,12 +18,12 @@ const Button = ({
 }: Props) => {
   return (
     <TouchableOpacity
-      onPress={() => action(text)}
       style={{
         ...styles.button,
         backgroundColor,
         width: !double ? 80 : 180,
-      }}>
+      }}
+      onPress={() => action(text)}>
       <Text
         style={{
           ...styles.textButton,
