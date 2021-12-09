@@ -78,7 +78,7 @@ const CalculatorScreen = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.ans}>{ans}</Text>
+      {ans !== '0' && <Text style={styles.ans}>{ans}</Text>}
       <Text
         adjustsFontSizeToFit
         numberOfLines={1}
