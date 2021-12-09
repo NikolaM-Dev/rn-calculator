@@ -1,9 +1,8 @@
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 
 import CalculatorScreen from './src/screens/CalculatorScreen';
-
-import {styles} from './src/theme/appTheme';
+import { styles } from './src/theme/appTheme';
 
 const App = () => {
   return (
