@@ -6,15 +6,15 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   wrapper: {
-    paddingHorizontal: 40,
+    paddingHorizontal: 45,
     flex: 1,
     justifyContent: 'flex-end',
   },
   result: {
     color: 'white',
-    fontSize: 72,
+    fontSize: 60,
     textAlign: 'right',
-    marginBottom: 40,
+    marginBottom: 15,
   },
   ans: {
     color: 'rgba(255, 255, 255, 0.5)',
