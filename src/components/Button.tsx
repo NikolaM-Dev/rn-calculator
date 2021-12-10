@@ -21,7 +21,7 @@ const Button = ({
       style={{
         ...styles.button,
         backgroundColor,
-        width: !double ? 80 : 180,
+        width: !double ? 70 : 160,
       }}
       onPress={() => action(text)}>
       <Text
@@ -29,7 +29,7 @@ const Button = ({
           ...styles.textButton,
           color,
           textAlign: !double ? 'center' : 'left',
-          paddingLeft: !double ? 0 : 32,
+          paddingLeft: !double ? 0 : 28,
         }}>
         {text}
       </Text>
@@ -39,10 +39,10 @@ const Button = ({
 
 const styles = StyleSheet.create({
   button: {
-    height: 80,
+    height: 70,
     borderRadius: 100,
     justifyContent: 'center',
-    margin: 8,
+    margin: 6,
   },
   textButton: {
     fontSize: 32,
